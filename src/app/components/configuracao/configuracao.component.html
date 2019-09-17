@@ -1,0 +1,15 @@
+<div style="margin-left: 7%">
+    <po-divider></po-divider>
+    <p>Aqui você pode customizar seu aplicativo SLC!</p>
+    <po-divider></po-divider>
+    <po-radio-group
+        name="grupoDeRadioTipoDeCondomimio"
+        [(ngModel)]="tipoDeCondominio"
+        class="po-md-3"
+        p-label="Seu condomínio é do tipo:"
+        [p-options]="tiposDeCondominio"
+        (p-change)="alterarValorDoBotaoDeRadio($event)">
+        
+    </po-radio-group>
+</div>
+
