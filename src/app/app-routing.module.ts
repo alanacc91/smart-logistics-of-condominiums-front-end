@@ -19,7 +19,7 @@ const routes: Routes = [
         component: ConfiguracaoComponent
       },
       {
-        path: 'nivel1',
+        path: 'nivel1/:tipoDeCondominio',
         component: Nivel1Component
       },
       {

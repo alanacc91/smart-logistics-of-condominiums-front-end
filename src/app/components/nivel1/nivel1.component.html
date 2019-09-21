@@ -1,1 +1,26 @@
-<p>nivel1 works!</p>
+<div style="margin-left: 7%">
+    <po-divider></po-divider>
+    <p>Manutenção de {{titulo}} do seu condomínio:</p>
+    <po-divider></po-divider>
+    <div class="po-row">
+        <po-input class="po-md-6"
+            name="nome"
+            p-label="Nome"
+            p-maxlength="200"
+            p-clean="true"
+            [(ngModel)]="nivel1.nome">
+        </po-input>
+        <po-button
+            style="margin-top: 2.5%"
+            p-label="Inserir"
+            (p-click)="inserir()">
+        </po-button>
+    </div>
+    <div class="po-row">
+        <po-table
+            [p-columns]="colunas"
+            [p-items]="listaDeNivel1.content">
+        </po-table>
+    </div>
+    
+</div>

@@ -11,9 +11,10 @@ import { ConfiguracaoModel } from './configuracao.model';
 export class ConfiguracaoComponent implements OnInit {
   tiposDeCondominio: Array<PoRadioGroupOption>;
   tipoDeCondominio: string;
+  configTipoDeCondominio: ConfiguracaoModel;
   constructor(
-    private configuracaoService: ConfiguracaoService,
-    private configTipoDeCondominio: ConfiguracaoModel) { }
+    private configuracaoService: ConfiguracaoService
+    ) { }
 
   ngOnInit() {
 

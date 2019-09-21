@@ -12,10 +12,10 @@ import { UrlService } from 'src/propriedades/url.service';
 import { ConfiguracaoService } from './components/configuracao/configuracao.service';
 import { Nivel1Component } from './components/nivel1/nivel1.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConfiguracaoModel } from './components/configuracao/configuracao.model';
 import { Nivel2Component } from './components/nivel2/nivel2.component';
 import { MoradorComponent } from './components/morador/morador.component';
 import { AreaComumComponent } from './components/area-comum/area-comum.component';
+import { Nivel1Service } from './components/nivel1/nivel1.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { AreaComumComponent } from './components/area-comum/area-comum.component
   providers: [
     UrlService, 
     ConfiguracaoService,
-    ConfiguracaoModel
+    Nivel1Service
   ],
   bootstrap: [AppComponent]
 })

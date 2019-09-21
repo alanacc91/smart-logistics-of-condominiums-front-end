@@ -14,9 +14,9 @@ export class TelaInicialComponent implements OnInit {
   nomeMenuNivel1: string;
   nomeMenuNivel2: string;
   nomeMenuNivel2Abreviado: string;
+  tipoDeCondominio: ConfiguracaoModel;
   constructor(
-    private configuracaoService: ConfiguracaoService,
-    private tipoDeCondominio: ConfiguracaoModel
+    private configuracaoService: ConfiguracaoService
     ) { 
     
   }
@@ -64,14 +64,8 @@ export class TelaInicialComponent implements OnInit {
       shortLabel: 'Configurar'
     });
     this.menus.push({
-      label: 'Moradores', 
-      link: '/tela-inicial/morador',
-      icon: 'po-icon-users', 
-      shortLabel: 'Moradores',
-    });
-    this.menus.push({
       label: this.nomeMenuNivel1, 
-      link: '/tela-inicial/nivel1',
+      link: '/tela-inicial/nivel1/' + this.tipoDeCondominio.valor,
       icon: 'po-icon-company', 
       shortLabel: this.nomeMenuNivel1,
     });
@@ -80,6 +74,12 @@ export class TelaInicialComponent implements OnInit {
       link: '/tela-inicial/nivel2',
       icon: 'po-icon-home', 
       shortLabel: this.nomeMenuNivel2Abreviado,
+    });
+    this.menus.push({
+      label: 'Moradores', 
+      link: '/tela-inicial/morador',
+      icon: 'po-icon-users', 
+      shortLabel: 'Moradores',
     });
     this.menus.push({
       label: 'Áreas Comuns', 
