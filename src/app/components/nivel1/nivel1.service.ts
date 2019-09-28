@@ -28,4 +28,8 @@ export class Nivel1Service {
     inserirNivel1(nivel1: Nivel1Model): Observable<any> {
         return this.http.post(this.url, nivel1);
     }
+
+    deletarNivel1(id: number): Observable<any> {
+        return this.http.delete(`${this.url}/${id}` );
+    }
 }

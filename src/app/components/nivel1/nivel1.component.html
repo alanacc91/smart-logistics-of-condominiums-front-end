@@ -1,9 +1,10 @@
 <div style="margin-left: 7%">
     <po-divider></po-divider>
-    <p>Manutenção de {{titulo}} do seu condomínio:</p>
+    <p>Manutenção de {{tituloColuna}} do seu condomínio:</p>
     <po-divider></po-divider>
     <div class="po-row">
-        <po-input class="po-md-6"
+        <po-input 
+            class="po-md-6"
             name="nome"
             p-label="Nome"
             p-maxlength="200"
@@ -13,14 +14,55 @@
         <po-button
             style="margin-top: 2.5%"
             p-label="Inserir"
-            (p-click)="inserir()">
+            (p-click)="inserir()"
+            p-icon="po-icon-plus-circle">
         </po-button>
     </div>
-    <div class="po-row">
+    <po-divider></po-divider>
+    <po-button
+        style="margin-right: 0.5%"
+        p-label="Visualizar"
+        [p-disabled]="flagDesabilitarBotoes"
+        (p-click)="modalDeEdicao.open()">
+    </po-button>
+    <po-button
+        p-label="Excluir"
+        [p-disabled]="flagDesabilitarBotoes"
+        (p-click)="modalDeExclusao.open()">
+    </po-button>
+    <div 
+        class="po-row"
+        style="margin-top: 1%">
         <po-table
             [p-columns]="colunas"
-            [p-items]="listaDeNivel1.content">
+            [p-items]="listaDeNivel1"
+            p-container="border"
+            (p-selected)="selecionarItemDaTabela($event)"
+            (p-unselected)="desselecionarItemDaTabela($event)"
+            p-checkbox="true"
+            p-single-select>
         </po-table>
     </div>
-    
+    <po-modal 
+        #modalDeEdicao
+        [p-title]="tituloModalEdicao"
+        p-hide-close
+        [(p-primary-action)]="acaoAtualizarDaModalDeEdicao"
+        [(p-secondary-action)]="acaoFecharDaModalDeEdicao"> 
+        <po-input 
+            name="nome"
+            p-label="Nome"
+            p-maxlength="200"
+            p-clean="true"
+            [(ngModel)]="nivel1Selecionado.nome">
+        </po-input>   
+    </po-modal>
+    <po-modal 
+        #modalDeExclusao
+        [p-title]="tituloModalExclusao"
+        p-hide-close
+        [(p-primary-action)]="acaoDeletarDaModalDeExclusao"
+        [(p-secondary-action)]="acaoFecharDaModalDeExclusao">
+        {{nivel1Selecionado.nome}}
+    </po-modal> 
 </div>
