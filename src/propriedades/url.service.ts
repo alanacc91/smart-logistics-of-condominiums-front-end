@@ -3,6 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UrlService {
     recuperarUrlPadrao() : string {
-        return "http://localhost:8080";
+        return "http://192.168.0.102:8080";
     }
 }

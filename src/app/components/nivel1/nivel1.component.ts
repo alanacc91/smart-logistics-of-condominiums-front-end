@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Nivel1Model } from './nivel1.model';
 import { Nivel1Service } from './nivel1.service';
-import { PoTableColumn, PoTableAction, PoModalAction, PoModalComponent } from '@portinari/portinari-ui';
+import { PoTableColumn, PoTableAction, PoModalAction, PoModalComponent, PoNotificationService } from '@portinari/portinari-ui';
 
 @Component({
   selector: 'app-nivel1',
@@ -22,6 +22,10 @@ export class Nivel1Component implements OnInit {
   listaDeNivel1 = [];
   listaDeAcoesDaTabela: Array<PoTableAction>;
   flagDesabilitarBotoes: boolean = true;
+  parametroDePesquisa: string;
+  tituloNotificacaoInsercao: string;
+  tituloNotificacaoAtualizacao: string;
+  tituloNotificacaoDelecao: string;
   acaoAtualizarDaModalDeEdicao:  PoModalAction = {
     action: () => {
       this.atualizar();
@@ -52,7 +56,8 @@ export class Nivel1Component implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private nivel1service: Nivel1Service) {
+    private nivel1service: Nivel1Service,
+    public poNotification: PoNotificationService) {
       
     }
 
@@ -69,12 +74,14 @@ export class Nivel1Component implements OnInit {
   }
 
   inserir(): void {
-    this.nivel1service.inserirNivel1(this.nivel1).subscribe(retorno => {
+    this.nivel1service.inserirNivel1(this.nivel1).subscribe(() => {
       this.nivel1 = new Nivel1Model();
       this.getListaDeNivel1();
+      this.poNotification.success(`${this.tituloNotificacaoInsercao} com sucesso!`)
     }, retorno => {
       this.nivel1 = new Nivel1Model();
       this.getListaDeNivel1();
+      this.poNotification.error(retorno.error.msg);
     });
   }
 
@@ -84,7 +91,24 @@ export class Nivel1Component implements OnInit {
     }, () => {
       this.listaDeNivel1 = [];
     });
-    
+  }
+
+  selecionarNiveis1PorNome(): void {
+    this.nivel1service.selecionarNiveis1PorNome(this.parametroDePesquisa).subscribe(resultado => {
+      this.listaDeNivel1 = resultado;
+    }, () => {
+      this.listaDeNivel1 = [];
+    });
+  }
+
+  pesquisar(): void {
+    if (this.parametroDePesquisa) {
+      this.selecionarNiveis1PorNome();
+      this.flagDesabilitarBotoes = true;
+    } else {
+      this.getListaDeNivel1();
+      this.flagDesabilitarBotoes = true;
+    }
   }
 
   selecionarItemDaTabela(data): void {
@@ -103,6 +127,10 @@ export class Nivel1Component implements OnInit {
     this.nivel1service.atualizarNivel1(this.nivel1Selecionado).subscribe(() => {
       this.modalDeEdicao.close();
       this.getListaDeNivel1();
+      this.poNotification.success(`${this.tituloNotificacaoAtualizacao} com sucesso!`)
+    }, retorno => {
+      this.getListaDeNivel1();
+      this.poNotification.error(retorno.error.msg);
     });
     this.flagDesabilitarBotoes = true;
   }
@@ -111,6 +139,11 @@ export class Nivel1Component implements OnInit {
     this.nivel1service.deletarNivel1(this.nivel1Selecionado.id).subscribe(() => {
       this.modalDeExclusao.close();
       this.getListaDeNivel1();
+      this.poNotification.success(`${this.tituloNotificacaoDelecao} com sucesso!`)
+    }, retorno => {
+      this.nivel1Selecionado = new Nivel1Model();
+      this.getListaDeNivel1();
+      this.poNotification.error(retorno.error.msg);
     });
     this.flagDesabilitarBotoes = true;
   }
@@ -128,21 +161,28 @@ export class Nivel1Component implements OnInit {
 
   }
 
-  private ajustarTitulosParaTipoDeCondominioVertical() {
+  private ajustarTitulosParaTipoDeCondominioVertical(): void {
     this.tituloColuna = "prédios";
-    this.tituloTabela = "prédios cadastrados"
-    this.tituloModalEdicao = "Edição de prédios"
-    this.tituloModalExclusao = "Deseja excluir este prédio?"
+    this.tituloTabela = "prédios cadastrados";
+    this.tituloModalEdicao = "Edição de prédios";
+    this.tituloModalExclusao = "Deseja excluir este prédio?";
+    this.tituloNotificacaoInsercao = "Prédio inserido";
+    this.tituloNotificacaoAtualizacao = "Prédio atualizado";
+    this.tituloNotificacaoDelecao = "Prédio excluído";
+
   }
 
-  private ajustarTitulosParaTipoDeCondominioHorizontal() {
+  private ajustarTitulosParaTipoDeCondominioHorizontal(): void {
     this.tituloColuna = "ruas";
-    this.tituloTabela = "ruas cadastradas"
-    this.tituloModalEdicao = "Edição de ruas"
-    this.tituloModalExclusao = "Deseja excluir esta rua?"
+    this.tituloTabela = "ruas cadastradas";
+    this.tituloModalEdicao = "Edição de ruas";
+    this.tituloModalExclusao = "Deseja excluir esta rua?";
+    this.tituloNotificacaoInsercao = "Rua inserida";
+    this.tituloNotificacaoAtualizacao = "Rua atualizada";
+    this.tituloNotificacaoDelecao = "Rua excluída";
   }
 
-  private ajustarTitulos(tipoDeCondominio) {
+  private ajustarTitulos(tipoDeCondominio): void {
     if (tipoDeCondominio) {
       this.tipoDeCondominio = tipoDeCondominio;
       if (this.tipoDeCondominio == 'VERTICAL') {
@@ -155,5 +195,6 @@ export class Nivel1Component implements OnInit {
     }
   }
 
+  
 
 }

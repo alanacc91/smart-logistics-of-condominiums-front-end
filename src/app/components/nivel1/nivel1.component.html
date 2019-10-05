@@ -5,6 +5,7 @@
     <div class="po-row">
         <po-input 
             class="po-md-6"
+            style="margin-right: -0.6%;"
             name="nome"
             p-label="Nome"
             p-maxlength="200"
@@ -12,6 +13,7 @@
             [(ngModel)]="nivel1.nome">
         </po-input>
         <po-button
+            class="po-md-1"
             style="margin-top: 2.5%"
             p-label="Inserir"
             (p-click)="inserir()"
@@ -19,19 +21,38 @@
         </po-button>
     </div>
     <po-divider></po-divider>
-    <po-button
-        style="margin-right: 0.5%"
-        p-label="Visualizar"
-        [p-disabled]="flagDesabilitarBotoes"
-        (p-click)="modalDeEdicao.open()">
-    </po-button>
-    <po-button
-        p-label="Excluir"
-        [p-disabled]="flagDesabilitarBotoes"
-        (p-click)="modalDeExclusao.open()">
-    </po-button>
+    <div class="po-row">
+        <po-button
+            class="po-md-1"
+            p-label="Editar"
+            [p-disabled]="flagDesabilitarBotoes"
+            (p-click)="modalDeEdicao.open()"
+            p-icon="po-icon-edit">
+        </po-button>
+        <po-button
+            class="po-md-1"
+            p-label="Excluir"
+            [p-disabled]="flagDesabilitarBotoes"
+            (p-click)="modalDeExclusao.open()"
+            p-icon="po-icon-delete">
+        </po-button>
+        <po-input 
+            class="po-md-4"
+            name="pesquisa"
+            p-maxlength="200"
+            p-clean="true"
+            [(ngModel)]="parametroDePesquisa"
+            style="margin-right: -0.6%; margin-top: -0.6%"
+            p-placeholder="Pesquisar">
+        </po-input>
+        <po-button
+            class="po-md-1"
+            p-icon="po-icon-search"
+            (p-click)="pesquisar()">
+        </po-button>
+    </div>
     <div 
-        class="po-row"
+        class="po-row po-md-12"
         style="margin-top: 1%">
         <po-table
             [p-columns]="colunas"
