@@ -71,7 +71,7 @@ export class TelaInicialComponent implements OnInit {
     });
     this.menus.push({
       label: this.nomeMenuNivel2, 
-      link: '/tela-inicial/nivel2',
+      link: '/tela-inicial/nivel2/' + this.tipoDeCondominio.valor,
       icon: 'po-icon-home', 
       shortLabel: this.nomeMenuNivel2Abreviado,
     });

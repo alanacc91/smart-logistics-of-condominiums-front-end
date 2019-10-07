@@ -21,6 +21,10 @@ export class Nivel1Service {
         return this.http.get(this.url + '/page');
     }
 
+    selecionarNiveis1(): Observable<any> {
+        return this.http.get(this.url + '/all');
+    }
+
     selecionarNiveis1PorNome(nome: string): Observable<any> {
         return this.http.get(`${this.url}/nome/${nome}`);
     }

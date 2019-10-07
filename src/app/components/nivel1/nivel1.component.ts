@@ -86,8 +86,8 @@ export class Nivel1Component implements OnInit {
   }
 
   getListaDeNivel1(): void {
-    this.nivel1service.selecionarNiveis1Paginados().subscribe(resultado => {
-      this.listaDeNivel1 = resultado.content;
+    this.nivel1service.selecionarNiveis1().subscribe(resultado => {
+      this.listaDeNivel1 = resultado;
     }, () => {
       this.listaDeNivel1 = [];
     });

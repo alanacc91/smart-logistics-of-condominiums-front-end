@@ -23,7 +23,7 @@ const routes: Routes = [
         component: Nivel1Component
       },
       {
-        path: 'nivel2',
+        path: 'nivel2/:tipoDeCondominio',
         component: Nivel2Component
       },
       {
