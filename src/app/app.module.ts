@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PoModule } from '@portinari/portinari-ui';
+import { PoModule, PoFieldModule } from '@portinari/portinari-ui';
 import { PoPageLoginModule, PoModalPasswordRecoveryModule } from '@portinari/portinari-templates';
 import { PaginaDeLoginComponent } from './components/pagina-de-login/pagina-de-login.component';
 import { ConfiguracaoComponent } from './components/configuracao/configuracao.component';
@@ -16,6 +16,7 @@ import { Nivel2Component } from './components/nivel2/nivel2.component';
 import { MoradorComponent } from './components/morador/morador.component';
 import { AreaComumComponent } from './components/area-comum/area-comum.component';
 import { Nivel1Service } from './components/nivel1/nivel1.service';
+import { Nivel1LookupService } from './components/nivel1/nivel1.lookup.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { Nivel1Service } from './components/nivel1/nivel1.service';
   providers: [
     UrlService, 
     ConfiguracaoService,
-    Nivel1Service
+    Nivel1Service,
+    Nivel1LookupService
   ],
   bootstrap: [AppComponent]
 })

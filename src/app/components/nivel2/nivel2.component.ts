@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PoNotificationService } from '@portinari/portinari-ui';
+import { Nivel1LookupService } from '../nivel1/nivel1.lookup.service';
 
 @Component({
   selector: 'app-nivel2',
@@ -17,10 +18,12 @@ export class Nivel2Component implements OnInit {
   tituloNotificacaoInsercao: string;
   tituloNotificacaoAtualizacao: string;
   tituloNotificacaoDelecao: string;
+  tituloNivel1Lookup: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    public poNotification: PoNotificationService
+    public poNotification: PoNotificationService,
+    public nivel1LookupService: Nivel1LookupService
   ) { 
     this.activatedRoute.params.subscribe( parametros => {
       this.ajustarTitulos(parametros['tipoDeCondominio']);
@@ -41,6 +44,7 @@ export class Nivel2Component implements OnInit {
     this.tituloNotificacaoInsercao = "Apartamentos inserido";
     this.tituloNotificacaoAtualizacao = "Apartamentos atualizado";
     this.tituloNotificacaoDelecao = "Apartamentos excluído";
+    this.tituloNivel1Lookup = "Prédio";
 
   }
 
@@ -52,6 +56,7 @@ export class Nivel2Component implements OnInit {
     this.tituloNotificacaoInsercao = "Casa inserida";
     this.tituloNotificacaoAtualizacao = "Casa atualizada";
     this.tituloNotificacaoDelecao = "Casa excluída";
+    this.tituloNivel1Lookup = "Rua";
   }
 
   private ajustarTitulos(tipoDeCondominio): void {

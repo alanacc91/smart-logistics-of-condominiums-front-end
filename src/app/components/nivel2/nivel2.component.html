@@ -2,4 +2,30 @@
     <po-divider></po-divider>
     <p>Manutenção de {{tituloColuna}} do seu condomínio:</p>
     <po-divider></po-divider>
+    <div class="po-row">
+        <po-input
+            class="po-md-2"
+            name="numero"
+            p-label="Número">
+        </po-input>
+        <po-input
+            class="po-md-2"
+            name="andar"
+            p-label="Andar">
+        </po-input>
+        <po-lookup
+            class="po-md-3"
+            name="nivel1"
+            p-field-label="id"
+            p-field-value="value"
+            [p-filter-service]="nivel1LookupService"
+            [p-label]="tituloNivel1Lookup">
+        </po-lookup>
+        <po-button
+            class="po-md-1"
+            style="margin-top: 2.5%"
+            p-label="Inserir"
+            p-icon="po-icon-plus-circle">
+        </po-button>
+    </div>
 </po-page-default>

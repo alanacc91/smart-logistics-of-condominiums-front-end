@@ -17,8 +17,23 @@ export class Nivel1Service {
         return this.http.get(this.url + '/' + id.toString());
     }
 
-    selecionarNiveis1Paginados(): Observable<any> {
-        return this.http.get(this.url + '/page');
+    selecionarNiveis1Paginados(pagina: number, linhasPorPagina: number, direcao: string): Observable<any> {
+        let queryParams: string;
+        queryParams = "?ordenacao=nome";
+        
+        if (pagina) {
+            queryParams = `${queryParams}&pagina=${pagina}`
+        }
+
+        if (linhasPorPagina) {
+            queryParams = `${queryParams}&linhasPorPagina=${linhasPorPagina}`
+        }
+
+        if (direcao) {
+            queryParams = `${queryParams}&direcao=${direcao}`
+        }
+
+        return this.http.get(`${this.url}/page${queryParams}`);
     }
 
     selecionarNiveis1(): Observable<any> {
