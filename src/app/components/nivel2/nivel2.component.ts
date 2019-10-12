@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PoNotificationService } from '@portinari/portinari-ui';
+import { PoNotificationService, PoLookupColumn } from '@portinari/portinari-ui';
 import { Nivel1LookupService } from '../nivel1/nivel1.lookup.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class Nivel2Component implements OnInit {
   tituloNotificacaoAtualizacao: string;
   tituloNotificacaoDelecao: string;
   tituloNivel1Lookup: string;
+  listaColunasDoLookupDeNivel1: Array<PoLookupColumn>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class Nivel2Component implements OnInit {
       // this.colunas =[
       //   { property: 'nome', type: 'string', width: '100%', label:`Tabela de ${this.tituloTabela}`}
       // ];
+      this.listaColunasDoLookupDeNivel1 = [{ property: 'nome', label: 'Nome' }];
     });
   }
 

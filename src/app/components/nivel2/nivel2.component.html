@@ -16,8 +16,9 @@
         <po-lookup
             class="po-md-3"
             name="nivel1"
-            p-field-label="id"
-            p-field-value="value"
+            [p-columns]="listaColunasDoLookupDeNivel1"
+            p-field-label="nome"
+            p-field-value="id"
             [p-filter-service]="nivel1LookupService"
             [p-label]="tituloNivel1Lookup">
         </po-lookup>

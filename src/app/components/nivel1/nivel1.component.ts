@@ -95,7 +95,7 @@ export class Nivel1Component implements OnInit {
 
   selecionarNiveis1PorNome(): void {
     this.nivel1service.selecionarNiveis1PorNome(this.parametroDePesquisa).subscribe(resultado => {
-      this.listaDeNivel1 = resultado;
+      this.listaDeNivel1 = resultado.items;
     }, () => {
       this.listaDeNivel1 = [];
     });

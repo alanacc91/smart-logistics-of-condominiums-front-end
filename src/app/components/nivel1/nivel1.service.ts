@@ -17,6 +17,10 @@ export class Nivel1Service {
         return this.http.get(this.url + '/' + id.toString());
     }
 
+    selecionarNivel1PorNome(nome: string): Observable<any> {
+        return this.http.get(`${this.url}/nome/lookup/${nome}`);
+    }
+
     selecionarNiveis1Paginados(pagina: number, linhasPorPagina: number, direcao: string): Observable<any> {
         let queryParams: string;
         queryParams = "?ordenacao=nome";
