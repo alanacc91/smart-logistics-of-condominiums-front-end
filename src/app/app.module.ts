@@ -17,6 +17,7 @@ import { MoradorComponent } from './components/morador/morador.component';
 import { AreaComumComponent } from './components/area-comum/area-comum.component';
 import { Nivel1Service } from './components/nivel1/nivel1.service';
 import { Nivel1LookupService } from './components/nivel1/nivel1.lookup.service';
+import { Nivel2Service } from './components/nivel2/nivel2.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { Nivel1LookupService } from './components/nivel1/nivel1.lookup.service';
     UrlService, 
     ConfiguracaoService,
     Nivel1Service,
-    Nivel1LookupService
+    Nivel1LookupService,
+    Nivel2Service
   ],
   bootstrap: [AppComponent]
 })

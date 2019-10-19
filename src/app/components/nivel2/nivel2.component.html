@@ -6,12 +6,14 @@
         <po-input
             class="po-md-2"
             name="numero"
-            p-label="Número">
+            p-label="Número"
+            [(ngModel)]="nivel2.numero">
         </po-input>
         <po-input
             class="po-md-2"
             name="andar"
-            p-label="Andar">
+            p-label="Andar"
+            [(ngModel)]="nivel2.andar">
         </po-input>
         <po-lookup
             class="po-md-3"
@@ -20,13 +22,28 @@
             p-field-label="nome"
             p-field-value="id"
             [p-filter-service]="nivel1LookupService"
-            [p-label]="tituloNivel1Lookup">
+            [p-label]="tituloNivel1Lookup"
+            [(ngModel)]="nivel2.nivel1.id">
         </po-lookup>
         <po-button
             class="po-md-1"
             style="margin-top: 2.5%"
             p-label="Inserir"
+            (p-click)="inserir()"
             p-icon="po-icon-plus-circle">
         </po-button>
+    </div>
+    <div 
+        class="po-row po-md-12"
+        style="margin-top: 1%">
+        <po-table
+            [p-columns]="colunas"
+            [p-items]="listaDeNivel2"
+            p-container="border"
+            (p-selected)="selecionarItemDaTabela($event)"
+            (p-unselected)="desselecionarItemDaTabela($event)"
+            p-checkbox="true"
+            p-single-select>
+        </po-table>
     </div>
 </po-page-default>
